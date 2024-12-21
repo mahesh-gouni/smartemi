@@ -1,28 +1,23 @@
-package com.technologies.SmartEMI.enitity;
+package org.docker.jenkin.enitity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
+import java.sql.Timestamp;
+
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Table(name = "transcation")
 @IdClass(TranscationComposite.class)
 public class TranscationEnity {
 
 
     @Id
-    private LocalDate startDate;
+    private Timestamp startDate;
     @Id
-    private LocalDate endDate;
+    private Timestamp endDate;
 
     private double amount;
 
@@ -32,6 +27,63 @@ public class TranscationEnity {
     @JoinColumn(name = "cardId")
      private CardEnity cardEnity;
 
-    @OneToMany(mappedBy = "transcationEnity",cascade = CascadeType.ALL, orphanRemoval = true)
-    List<SmartEMIEnity> transcationEnityList = new ArrayList<>();
+    public Timestamp getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Timestamp startDate) {
+        this.startDate = startDate;
+    }
+
+    public Timestamp getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Timestamp endDate) {
+        this.endDate = endDate;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public boolean isDebit() {
+        return isDebit;
+    }
+
+    public void setDebit(boolean debit) {
+        isDebit = debit;
+    }
+
+    public CardEnity getCardEnity() {
+        return cardEnity;
+    }
+
+    public void setCardEnity(CardEnity cardEnity) {
+        this.cardEnity = cardEnity;
+    }
+
+
+
+    public TranscationEnity() {
+    }
+
+    @Override
+    public String toString() {
+        return "TranscationEnity{" +
+                "startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", amount=" + amount +
+                ", isDebit=" + isDebit +
+               ", cardEnity=" + cardEnity +
+                '}';
+    }
+
+    @OneToOne(mappedBy = "transcationEnity", cascade = CascadeType.ALL)
+    private LoanEntity loanEntity;
+
 }
