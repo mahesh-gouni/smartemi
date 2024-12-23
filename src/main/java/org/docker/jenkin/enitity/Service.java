@@ -6,7 +6,7 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
 
-import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,39 +145,49 @@ public class Service {
 
 
 
-        public void updateTransactionByCompositeKeyAndAmount(TranscationComposite key, double targetAmount) {
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hibernateDemo");
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
+//        public void updateTransactionByCompositeKeyAndAmount(TranscationComposite key, double targetAmount) {
+//            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hibernateDemo");
+//            EntityManager entityManager = entityManagerFactory.createEntityManager();
+//
+//            try {
+//                entityManager.getTransaction().begin();
+//
+//
+//                TranscationEnity transaction = entityManager.find(TranscationEnity.class, key);
+//
+//                if (transaction != null) {
+//
+//                    if (transaction.getAmount() == targetAmount) {
+//
+//                        transaction.setDebit(false);
+//                        entityManager.merge(transaction);
+//                        System.out.println("Transaction updated to smartemi.");
+////UPDATE transactions SET debit = false WHERE key_part1 = ? AND key_part2 = ?;
+//                        //it is done by hibernate or jpa
+//
+//                    } else {
+//                        System.out.println("Amount does not match the target amount.");
+//                    }
+//                } else {
+//                    System.out.println("Transaction not found for the given key.");
+//                }
+//
+//                entityManager.getTransaction().commit();
+//            } catch (Exception e) {
+//
+//                e.printStackTrace();
+//            }
+//
 
-            try {
-                entityManager.getTransaction().begin();
+    //    }
 
 
-                TranscationEnity transaction = entityManager.find(TranscationEnity.class, key);
-
-                if (transaction != null) {
-
-                    if (transaction.getAmount() == targetAmount) {
-
-                        transaction.setDebit(false);
-                        entityManager.merge(transaction);
-                        System.out.println("Transaction updated to smartemi.");
-                    } else {
-                        System.out.println("Amount does not match the target amount.");
-                    }
-                } else {
-                    System.out.println("Transaction not found for the given key.");
-                }
-
-                entityManager.getTransaction().commit();
-            } catch (Exception e) {
-
-                e.printStackTrace();
-            }
 
 
-        }
-    }
+
+
+
+}
 
 
 

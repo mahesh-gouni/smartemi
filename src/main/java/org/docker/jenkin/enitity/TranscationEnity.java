@@ -86,4 +86,12 @@ public class TranscationEnity {
     @OneToOne(mappedBy = "transcationEnity", cascade = CascadeType.ALL)
     private LoanEntity loanEntity;
 
+
+    public LoanEntity getLoanEntity() {
+        return loanEntity;
+    }
+
+    public void setLoanEntity(LoanEntity loanEntity) {
+        this.loanEntity = loanEntity;
+    }
 }

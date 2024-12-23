@@ -82,7 +82,10 @@ public class GettingTest {
 
         System.out.println("slecting the smart emi");
 
+        SmartEmiService smart= new SmartEmiService();
+
         double targetAmount = 20000.0;
+        int noOfMontsOfSEMI=3;
 
 // their is a change of amojnt transctios are duplicate that y composite key is used
         TranscationComposite key = new TranscationComposite();
@@ -91,14 +94,16 @@ public class GettingTest {
         LocalDateTime endDateTime10 = LocalDateTime.of(2024, 1, 1, 10, 40, 0);
         key.setEndDate(Timestamp.valueOf(endDateTime10));
 
+        smart.insertTransactionAndLoan(key,targetAmount,noOfMontsOfSEMI);
 
 
-        s.updateTransactionByCompositeKeyAndAmount(key, targetAmount);
+     //   s.updateTransactionByCompositeKeyAndAmount(key, targetAmount);
 
 
 
 
     }
+
 
 
 

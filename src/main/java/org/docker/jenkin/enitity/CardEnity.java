@@ -14,7 +14,8 @@ import java.util.List;
 public class CardEnity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cardId")
     private int cardId;
     @Column(name = "cardType")
     private String cardType;
@@ -22,7 +23,8 @@ public class CardEnity {
     private double cardLimit;
 
     @OneToOne
-    @MapsId
+    //@MapsId
+    @JoinColumn(name = "user_enity_user_id", referencedColumnName = "userId")
     private UserEnity userEnity;
 
     @OneToMany(mappedBy = "cardEnity", cascade = CascadeType.ALL, orphanRemoval = true)

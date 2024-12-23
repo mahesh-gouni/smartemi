@@ -3,12 +3,12 @@ package org.docker.jenkin.enitity;
 
 import jakarta.persistence.*;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 @Entity
 @Table(name = "loan")
 public class LoanEntity {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,8 +25,9 @@ public class LoanEntity {
 
     @ElementCollection
     @CollectionTable(name = "emi_status", joinColumns = @JoinColumn(name = "loan_id"))
-    @Column(name = "status")
-    private List<Boolean> emiStatus;
+    @MapKeyColumn(name = "month")  // Column for the key (month)
+    @Column(name = "status")      // Column for the value (status)
+    private Map<Integer, Boolean> emiStatus;
 
     @OneToOne
     @JoinColumns({
@@ -35,5 +36,51 @@ public class LoanEntity {
     })
     private TranscationEnity transcationEnity;
 
-    // Constructors, getters, setters
+    public int getLoanId() {
+        return loanId;
+    }
+
+    public void setLoanId(int loanId) {
+        this.loanId = loanId;
+    }
+
+    public double getLoanAmount() {
+        return loanAmount;
+    }
+
+    public void setLoanAmount(double loanAmount) {
+        this.loanAmount = loanAmount;
+    }
+
+    public int getNoOfMonths() {
+        return noOfMonths;
+    }
+
+    public void setNoOfMonths(int noOfMonths) {
+        this.noOfMonths = noOfMonths;
+    }
+
+    public double getEmiAmount() {
+        return emiAmount;
+    }
+
+    public void setEmiAmount(double emiAmount) {
+        this.emiAmount = emiAmount;
+    }
+
+    public Map<Integer, Boolean> getEmiStatus() {
+        return emiStatus;
+    }
+
+    public void setEmiStatus(Map<Integer, Boolean> emiStatus) {
+        this.emiStatus = emiStatus;
+    }
+
+    public TranscationEnity getTranscationEnity() {
+        return transcationEnity;
+    }
+
+    public void setTranscationEnity(TranscationEnity transcationEnity) {
+        this.transcationEnity = transcationEnity;
+    }
 }
